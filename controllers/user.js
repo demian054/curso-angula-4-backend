@@ -86,8 +86,8 @@ function uploadImage(req, res){
   var file_name = 'No subido...';
 
   if (req.files) {
-    console.log(req.files.file.path);
-    var file_path = req.files.file.path;
+    console.log(req.files.image.path);
+    var file_path = req.files.image.path;
     var file_split = file_path.split('\\');
     var file_name = file_split[2];
 
@@ -137,6 +137,7 @@ function uploadImage(req, res){
 function updateUser(req, res){
   var userId = req.params.id;
   var update = req.body;
+  delete update.password;
   if (userId != req.user.sub) {
     return res.status(500).send({message: 'No tienes permisoss'});
   }
